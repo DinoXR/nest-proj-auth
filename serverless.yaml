@@ -1,0 +1,31 @@
+service: e-com-backend-auth
+
+useDotenv: true
+
+plugins:
+  - serverless-offline
+
+provider:
+  name: aws
+  region: ap-south-1
+  runtime: nodejs18.x
+  memorySize: 128
+  timeout: 30
+  environment:
+    MONGO_URI: ${env:MONGO_URI}
+    COGNITO_USER_POOL_ID: ${env:COGNITO_USER_POOL_ID}
+    COGNITO_CLIENT_ID: ${env:COGNITO_CLIENT_ID}
+    COGNITO_CLIENT_SECRET: ${env:COGNITO_CLIENT_SECRET}
+    REGION: ${env:REGION}
+    API_URL: ${env:API_URL}
+
+functions:
+  main:
+    handler: dist/serverless.handler
+    events:
+      - http:
+          path: /
+          method: ANY
+      - http:
+          path: /{proxy+}
+          method: ANY
