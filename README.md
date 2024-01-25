@@ -1,74 +1,114 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+# Nest JS E Commerce API
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-## Description
+## Testing with the deployed development environment on AWS.
+Authentication APIs can be accessed through the API Gateway URL for Auth.
+https://gyeene0qw4.execute-api.ap-south-1.amazonaws.com/dev
+User and preferences APIs can be accessed through the API Gateway URL.
+https://0us2iyb4pi.execute-api.ap-south-1.amazonaws.com/dev
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+The Nest JS E-Commerce Preferences API is designed to efficiently handle user preferences, providing functionalities for both addition and deletion operations. This API empowers your E-Commerce platform to seamlessly manage user-specific preferences, enhancing the overall user experience.
 
-## Installation
+## Screenshots
+
+![App Screenshot](https://i.imgur.com/ReyWTMP.png)
+
+## Overview
+This repository contains two projects: `nestjs-proj` and `nestjs-proj-auth`. The former is a NestJS application, while the latter focuses on authentication using AWS Cognito. Additionally, a separate Terraform project, `nest-proj-terraform`, is provided to set up the necessary AWS Cognito User Pool.
+This project utilizes two API gateways. One is responsible for handling authentication through Cognito and Lambda functions, while the other manages user-related functionalities and preferences.
+
+## Getting Started
+
+### 1. Clone Repositories
+
+Clone the following repositories:
 
 ```bash
-$ npm install
+git clone https://github.com/DinoXR/nestjs-proj.git
+git clone https://github.com/DinoXR/nestjs-proj-auth.git
+git clone https://github.com/DinoXR/nest-proj-terraform.git
+```
+### 2. Terraform Setup
+
+Navigate to the nest-proj-terraform directory and follow these steps:
+```bash
+cd nest-proj-terraform
 ```
 
-## Running the app
+Download the Terraform files and initialize:
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+terraform init
 ```
 
-## Test
+
+Apply the configuration to create the AWS Cognito User Pool:
+
+
+### 3. NestJS Projects
+
+a. nestjs-proj
+
+Navigate to the nestjs-proj directory:
+```bash
+cd nestjs-proj
+```
+
+b. nestjs-proj-auth
+
+Navigate to the nestjs-proj-auth directory:
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+cd nestjs-proj-auth
 ```
 
-## Support
+### 4. Deployment and Local Development
+Each project comes with a Makefile to simplify deployment and local development.
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+a. nestjs-proj
+Navigate to the nestjs-proj directory:
+```bash
+cd nestjs-proj
+```
 
-## Stay in touch
+Use the Makefile to deploy or run locally:
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+```bash
+make deploy  # Deploy using serverless framework
+make build     # Run locally
+```
 
-## License
+b. nestjs-proj-auth
+Navigate to the nestjs-proj-auth directory:
 
-Nest is [MIT licensed](LICENSE).
-# nest-proj-auth
+```bash
+cd nestjs-proj-auth
+```
+
+Use the Makefile to deploy or run locally:
+
+```bash
+make deploy  # Deploy using serverless framework
+make build     # Run locally
+```
+
+
+## Demo
+
+### 1 First Register As User
+![App Screenshot](https://i.imgur.com/Z1eQCkY.png)
+
+Once created you will receive an OTP to the registered email to confirm the email and that will approve your account
+
+### 2 Confirming the account
+![App Screenshot](https://i.imgur.com/zqEoWzi.png)
+
+Once you confirm your account by entering the OTP that came to your email,  you can Login
+
+### 3 Login 
+![App Screenshot](https://i.imgur.com/mmLJ9mk.png)
+
+### 4 Use the ID token to manage the Preferences
+![App Screenshot](https://i.imgur.com/I8azNYi.png)
+
